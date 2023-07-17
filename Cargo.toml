@@ -6,5 +6,20 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-axum = "0.6.18"
+axum = { version = "0.6.18", features = ["ws", "headers"] }
+futures = "0.3"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
 tokio = { version = "1.12.0", features = ["rt-multi-thread", "macros"] }
+tokio-tungstenite = "0.19"
+tower = { version = "0.4", features = ["full"] }
+tower-http = { version = "0.4", features = ["fs", "trace"] }
+tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[[bin]]
+name = "example-websockets"
+path = "src/main.rs"
+
+[[bin]]
+name = "example-client"
+path = "src/client.rs"
